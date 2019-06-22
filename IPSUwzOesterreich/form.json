@@ -15,6 +15,7 @@
 		{ "name": "homeX", "type": "NumberSpinner", "caption": "X" },
 		{ "name": "homeY", "type": "NumberSpinner", "caption": "Y" },
 		{ "name": "homeRadius", "type": "NumberSpinner", "caption": "Radius" }
+		{ "name": "Interval", "type": "NumberSpinner", "caption": "Interval in sec" }
 	],
 	"actions":
 	[

@@ -20,14 +20,14 @@
 			//Never delete this line!
 			parent::Create();
 			
-			$this->RegisterPropertyString("area", "SHS");
-			$this->RegisterPropertyString("option", "Regen");
+			$this->RegisterPropertyString("area", "AT");
+			$this->RegisterPropertyString("option", "RE");
 			$this->RegisterPropertyInteger("homeX", 420);
 			$this->RegisterPropertyInteger("homeY", 352);
 			$this->RegisterPropertyInteger("homeRadius", 10);
-			$this->RegisterPropertyInteger("Interval", 900);
+			$this->RegisterPropertyInteger("Interval", 300);
 			
-			$this->RegisterTimer("UpdateTimer", 900 * 1000, 'UWZ_RequestInfo($_IPS[\'TARGET\']);');
+			
 		}
 	
 		public function ApplyChanges()
@@ -36,6 +36,9 @@
 			parent::ApplyChanges();
 			
 			$this->RegisterVariableInteger("RainValue", "Regenwert");
+			$Interval = $this->ReadPropertyInteger("Interval");
+			
+			$this->RegisterTimer("UpdateTimer", $Interval * 1000, 'UWZ_RequestInfo($_IPS[\'TARGET\']);');
 
 		}
 
@@ -92,6 +95,7 @@
 			$homeY = $this->ReadPropertyInteger("homeY");
 			$homeRadius = $this->ReadPropertyInteger("homeRadius");
 			
+			
 			//Download picture
 			$opts = array(
 			'http'=>array(
@@ -111,14 +115,7 @@
 			  $remoteImage = "https://uwz.at/data/previews/AT_warning_today_thunderstorm_desktop.png";
 			}
 			
-			
-
-           
-
-		   
-			
-			
-			$data = @file_get_contents($remoteImage, false, $context);
+     		$data = @file_get_contents($remoteImage, false, $context);
 
 			$this->SendDebug($http_response_header[0], $remoteImage, 0);
 			
