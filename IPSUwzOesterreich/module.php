@@ -39,7 +39,6 @@
 			$Interval = $this->ReadPropertyInteger("Interval");
 			
 			$this->SetTimerInterval("UpdateTimer", $Interval * 1000);
-
 		}
 
 		private function ConvertArea($area) {
