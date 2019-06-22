@@ -135,7 +135,7 @@
 			IPS_SendMediaEvent($mid);
 			
 			//Radarbild auswerten
-			$im = ImageCreateFromGIF ($imagePath);
+			$im = imagecreatefrompng($imagePath);
 
 			$warnung[4] = imagecolorresolve  ($im, 175, 0, 100);  // dunkel rot
 			$warnung[3] = imagecolorresolve  ($im, 255, 255, 0);  // rot
