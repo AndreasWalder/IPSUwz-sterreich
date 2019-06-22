@@ -135,6 +135,40 @@
 			IPS_SendMediaEvent($mid);
 			
 			//Radarbild auswerten
+$im = ImageCreateFromGIF ($imagePath);
+
+$warnung[4] = imagecolorresolve  ($im, 175, 0, 100);  // dunkel rot
+$warnung[3] = imagecolorresolve  ($im, 255, 255, 0);  // rot
+$warnung[2] = imagecolorresolve  ($im, 250,  150, 0); // orang
+$warnung[1] = imagecolorresolve  ($im, 255,  255, 0); // gelb
+
+//Pixel durchgehen
+$rainValue = 0;
+for($x=$homeX-$homeRadius; $x<=$homeX+$homeRadius; $x++) {
+   for($y=$homeY-$homeRadius; $y<=$homeY+$homeRadius; $y++) {
+      $found = array_search(imagecolorat($im, $x, $y), $warnung);
+      if(!($found === FALSE)) {
+         $rainValue+=$found;
+      }
+   }
+}
+
+SetValue($this->GetIDForIdent("RainValue"), $rainValue);
+
+// Bereich zeichnen
+$schwarz = ImageColorAllocate ($im, 0, 0, 0);
+$rot = ImageColorAllocate ($im, 255, 0, 0);
+imagerectangle($im, $homeX-$homeRadius, $homeY-$homeRadius, $homeX+$homeRadius, $homeY+$homeRadius, $rot);
+imagesetpixel($im, $homeX, $homeY, $rot);
+imagegif($im, $imagePath);
+imagedestroy($im);
+			
+			
+		}
+	}		
+		/*	
+			
+			//Radarbild auswerten
 			
 			
 			
@@ -271,7 +305,7 @@
 		}
 	
 	}
-
+/*
 	//Copyright: https://github.com/renasboy/php-color-difference
 	class color_difference
 	{
@@ -356,6 +390,7 @@
 			$b = ($y - $z) * 200;
 			return [$l, $a, $b];
 		}
+		
 	}
-
+*/
 ?>
