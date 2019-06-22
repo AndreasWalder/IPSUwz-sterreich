@@ -125,17 +125,15 @@
 
 			file_put_contents($imagePath, $data);
 			
-
 			$mid = $this->RegisterMediaImage("RadarImage", "Radarbild", $this->imagePath);
-			
-			
-			
 			
 			//Bild aktualisiern lassen in IP-Symcon
 			IPS_SendMediaEvent($mid);
 			
 			//Radarbild auswerten
 			$im = imagecreatefrompng($imagePath);
+			imageAlphaBlending($im, false); 
+            imageSaveAlpha($im, true); 
 
 			$warnung[4] = imagecolorresolve  ($im, 175, 0, 100);  // dunkel rot
 			$warnung[3] = imagecolorresolve  ($im, 255, 255, 0);  // rot
