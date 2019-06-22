@@ -194,118 +194,8 @@
 		}
 		
 	}		
-		/*	
-			
-			//Radarbild auswerten
-			
-			
-			
-			
-			$im = imagecreatefrompng($imagePath);
-			
-			imageAlphaBlending($im, false); 
-            imageSaveAlpha($im, true); 
-			
-
-			// Bereich zeichnen
-			$rot = ImageColorAllocate ($im, 255, 0, 0);
-			imagerectangle($im, $homeX-$homeRadius, $homeY-$homeRadius, $homeX+$homeRadius, $homeY+$homeRadius, $rot);
-			imagesetpixel($im, $homeX, $homeY, $rot);
-			
-			// Zum Einstellen aktivieren!!
-			
-			
-			imagepng($im, $imagePath);
-			
-			
-			
-
-			//Stärken
-			$rainColors[6] = array(
-				"r" => 255,
-				"g" => 0,
-				"b" => 0
-			);
-			$allowedDifference[6] = 20;
-
-			$rainColors[5] = array(
-				"r" => 255,
-				"g" => 0,
-				"b" => 221
-			);
-            $allowedDifference[5] = 20;
-
-			$rainColors[4] = array(
-				"r" => 0,
-				"g" => 0,
-				"b" => 255
-			);
-            $allowedDifference[4] = 30;
-
-			$rainColors[3] = array(
-				"r" => 25,
-				"g" => 229,
-				"b" => 255
-			);
-            $allowedDifference[3] = 40;
-
-			$rainColors[2] = array(
-				"r" => 0,
-				"g" => 127,
-				"b" => 0
-			);
-            $allowedDifference[2] = 15;
-
-			$rainColors[1] = array(
-				"r" => 237,
-				"g" => 255,
-				"b" => 94
-			);
-            $allowedDifference[1] = 30;
-
-			$all = 0;
-			$matched = 0;
-
-			//Pixel durchgehen
-			$rainValue = 0;
-			for($x=$homeX-$homeRadius; $x<=$homeX+$homeRadius; $x++) {
-				for($y=$homeY-$homeRadius; $y<=$homeY+$homeRadius; $y++) {
-					$rgb = imagecolorat($im, $x, $y);
-					$pixelColor = array(
-                        "r" => ($rgb >> 16) & 0xFF,
-                    	"g" => ($rgb >> 8) & 0xFF,
-                    	"b" => $rgb & 0xFF
-					);
-
-					$colorMatches = [];
-					foreach($rainColors as $index => $rainColor) {
-                        $colorMatches[$index] = (new color_difference())->deltaECIE2000(array_values($pixelColor), array_values($rainColor));
-					}
-
-                    asort($colorMatches);
-
-					foreach($colorMatches as $index => $rainColor) {
-                        if($colorMatches[$index] < $allowedDifference[$index]) {
-                            //$this->SendDebug("Rain", print_r($colorMatches, true), 0);
-                            $rainValue+=$index;
-                        }
-                    	break; //we only want the first
-                    }
-				}
-			}
-
-            $this->SendDebug("Stats", $matched . " / " . $all, 0);
-
-			
-
-			SetValue($this->GetIDForIdent("RainValue"), $rainValue);
-			
-		}
-		
-		
 	
-	}
-*/
+	/*
 	//Copyright: https://github.com/renasboy/php-color-difference
 	class color_difference
 	{
@@ -392,4 +282,5 @@
 		}
 		
 	}
+	*/
 ?>
