@@ -135,36 +135,67 @@
 			IPS_SendMediaEvent($mid);
 			
 			//Radarbild auswerten
-$im = ImageCreateFromGIF ($imagePath);
+			$im = ImageCreateFromGIF ($imagePath);
 
-$warnung[4] = imagecolorresolve  ($im, 175, 0, 100);  // dunkel rot
-$warnung[3] = imagecolorresolve  ($im, 255, 255, 0);  // rot
-$warnung[2] = imagecolorresolve  ($im, 250,  150, 0); // orang
-$warnung[1] = imagecolorresolve  ($im, 255,  255, 0); // gelb
+			$warnung[4] = imagecolorresolve  ($im, 175, 0, 100);  // dunkel rot
+			$warnung[3] = imagecolorresolve  ($im, 255, 255, 0);  // rot
+			$warnung[2] = imagecolorresolve  ($im, 250,  150, 0); // orang
+			$warnung[1] = imagecolorresolve  ($im, 255,  255, 0); // gelb
 
-//Pixel durchgehen
-$rainValue = 0;
-for($x=$homeX-$homeRadius; $x<=$homeX+$homeRadius; $x++) {
-   for($y=$homeY-$homeRadius; $y<=$homeY+$homeRadius; $y++) {
-      $found = array_search(imagecolorat($im, $x, $y), $warnung);
-      if(!($found === FALSE)) {
-         $rainValue+=$found;
-      }
-   }
-}
+			//Pixel durchgehen
+			$rainValue = 0;
+			for($x=$homeX-$homeRadius; $x<=$homeX+$homeRadius; $x++) {
+				for($y=$homeY-$homeRadius; $y<=$homeY+$homeRadius; $y++) {
+					$found = array_search(imagecolorat($im, $x, $y), $warnung);
+						if(!($found === FALSE)) {
+							$rainValue+=$found;
+						}
+				}
+			}
 
-SetValue($this->GetIDForIdent("RainValue"), $rainValue);
+			SetValue($this->GetIDForIdent("RainValue"), $rainValue);
 
-// Bereich zeichnen
-$schwarz = ImageColorAllocate ($im, 0, 0, 0);
-$rot = ImageColorAllocate ($im, 255, 0, 0);
-imagerectangle($im, $homeX-$homeRadius, $homeY-$homeRadius, $homeX+$homeRadius, $homeY+$homeRadius, $rot);
-imagesetpixel($im, $homeX, $homeY, $rot);
-imagegif($im, $imagePath);
-imagedestroy($im);
+			// Bereich zeichnen
+			$schwarz = ImageColorAllocate ($im, 0, 0, 0);
+			$rot = ImageColorAllocate ($im, 255, 0, 0);
+			imagerectangle($im, $homeX-$homeRadius, $homeY-$homeRadius, $homeX+$homeRadius, $homeY+$homeRadius, $rot);
+			imagesetpixel($im, $homeX, $homeY, $rot);
+			imagegif($im, $imagePath);
+			imagedestroy($im);
 			
 			
 		}
+		
+		private function RegisterMediaImage($Ident, $Name, $Path) {
+		
+			//search for already available media with proper ident
+			$mid = @IPS_GetObjectIDByIdent($Ident, $this->InstanceID);
+		
+			//properly update mediaID
+			if($mid === false)
+				$mid = 0;
+				
+			//we need to create one
+			if($mid == 0)
+			{
+				$mid = IPS_CreateMedia(1);
+				
+				//configure it
+				IPS_SetParent($mid, $this->InstanceID);
+				IPS_SetIdent($mid, $Ident);
+				IPS_SetName($mid, $Name);
+				//IPS_SetReadOnly($mid, true);
+			}
+
+			//update path if needed
+			if(IPS_GetMedia($mid)['MediaFile'] != $Path) {
+                IPS_SetMediaFile($mid, $Path, false);
+			}
+
+            return $mid;
+			
+		}
+		
 	}		
 		/*	
 			
@@ -274,38 +305,10 @@ imagedestroy($im);
 			
 		}
 		
-		private function RegisterMediaImage($Ident, $Name, $Path) {
 		
-			//search for already available media with proper ident
-			$mid = @IPS_GetObjectIDByIdent($Ident, $this->InstanceID);
-		
-			//properly update mediaID
-			if($mid === false)
-				$mid = 0;
-				
-			//we need to create one
-			if($mid == 0)
-			{
-				$mid = IPS_CreateMedia(1);
-				
-				//configure it
-				IPS_SetParent($mid, $this->InstanceID);
-				IPS_SetIdent($mid, $Ident);
-				IPS_SetName($mid, $Name);
-				//IPS_SetReadOnly($mid, true);
-			}
-
-			//update path if needed
-			if(IPS_GetMedia($mid)['MediaFile'] != $Path) {
-                IPS_SetMediaFile($mid, $Path, false);
-			}
-
-            return $mid;
-			
-		}
 	
 	}
-/*
+*/
 	//Copyright: https://github.com/renasboy/php-color-difference
 	class color_difference
 	{
@@ -392,5 +395,4 @@ imagedestroy($im);
 		}
 		
 	}
-*/
 ?>
