@@ -27,7 +27,7 @@
 			$this->RegisterPropertyInteger("homeRadius", 10);
 			$this->RegisterPropertyInteger("Interval", 300);
 			
-			$this->RegisterTimer("UpdateTimer", $Interval * 1000, 'UWZ_RequestInfo($_IPS[\'TARGET\']);');
+			$this->RegisterTimer("UpdateTimer", 300 * 1000, 'UWZ_RequestInfo($_IPS[\'TARGET\']);');
 		}
 	
 		public function ApplyChanges()
