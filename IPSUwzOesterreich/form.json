@@ -1,0 +1,17 @@
+{
+	"elements":
+	[
+		{ "name": "area", "type": "Select", "caption": "Area",
+			"options": [
+				{ "label": "Austria", "value": "AT" }
+			]
+		},
+		{ "name": "homeX", "type": "NumberSpinner", "caption": "X" },
+		{ "name": "homeY", "type": "NumberSpinner", "caption": "Y" },
+		{ "name": "homeRadius", "type": "NumberSpinner", "caption": "Radius" }
+	],
+	"actions":
+	[
+		{ "type": "Button", "label": "Update", "onClick": "UWZ_RequestInfo($id);" }
+	]
+}

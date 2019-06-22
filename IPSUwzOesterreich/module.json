@@ -1,0 +1,14 @@
+{
+	"id": "{CE9FB2D0-49EC-ACFC-A5E9-F098D3F31B0F}",
+	"name": "IPSUwzOesterreich",
+	"type": 3,
+	"vendor": "",
+	"aliases": 
+	[
+		"IPSUwzOesterreich"
+	],
+	"parentRequirements": [],
+	"childRequirements": [],
+	"implemented": [],
+	"prefix": "UWZ"
+}
