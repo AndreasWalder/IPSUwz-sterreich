@@ -154,12 +154,11 @@
 			SetValue($this->GetIDForIdent("RainValue"), $rainValue);
 
 			// Bereich zeichnen
-			$schwarz = ImageColorAllocate ($im, 0, 0, 0);
 			$rot = ImageColorAllocate ($im, 255, 0, 0);
 			imagerectangle($im, $homeX-$homeRadius, $homeY-$homeRadius, $homeX+$homeRadius, $homeY+$homeRadius, $rot);
 			imagesetpixel($im, $homeX, $homeY, $rot);
-			imagegif($im, $imagePath);
-			imagedestroy($im);
+			
+			
 			
 			
 		}
