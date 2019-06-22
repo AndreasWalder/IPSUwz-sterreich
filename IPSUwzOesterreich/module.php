@@ -103,11 +103,11 @@
 			$context = stream_context_create($opts);
 
 			//$remoteImage = "https://www.dwd.de/DWD/wetter/radar/rad_" . $this->ConvertArea($area) ."_akt.jpg";
-			if ($option == "Regen") {
+			if ($option == "RE") {
 			  $remoteImage = "https://uwz.at/data/previews/AT_warning_today_rain_desktop.png";
 			}
 			
-			if ($option == "Gewitter") {
+			if ($option == "GE") {
 			  $remoteImage = "https://uwz.at/data/previews/AT_warning_today_thunderstorm_desktop.png";
 			}
 			
