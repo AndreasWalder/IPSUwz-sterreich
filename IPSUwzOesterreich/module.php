@@ -158,8 +158,8 @@
 			imagerectangle($im, $homeX-$homeRadius, $homeY-$homeRadius, $homeX+$homeRadius, $homeY+$homeRadius, $rot);
 			imagesetpixel($im, $homeX, $homeY, $rot);
 			
-			
-			
+			// Zum Einstellen aktivieren!!
+			imagepng($im, $imagePath);
 			
 		}
 		
