@@ -6,6 +6,12 @@
 				{ "label": "Austria", "value": "AT" }
 			]
 		},
+		{ "name": "option", "type": "Select", "caption": "Option",
+			"options": [
+				{ "label": "Regen", "value": "RE" },
+				{ "label": "Gewitter", "value": "GE" }
+			]
+		},
 		{ "name": "homeX", "type": "NumberSpinner", "caption": "X" },
 		{ "name": "homeY", "type": "NumberSpinner", "caption": "Y" },
 		{ "name": "homeRadius", "type": "NumberSpinner", "caption": "Radius" }

@@ -21,6 +21,7 @@
 			parent::Create();
 			
 			$this->RegisterPropertyString("area", "SHS");
+			$this->RegisterPropertyString("option", "Regen");
 			$this->RegisterPropertyInteger("homeX", 420);
 			$this->RegisterPropertyInteger("homeY", 352);
 			$this->RegisterPropertyInteger("homeRadius", 10);
@@ -86,6 +87,7 @@
 		
 			$imagePath = IPS_GetKernelDir() . $this->imagePath;
 			$area = $this->ReadPropertyString("area");
+			$option = $this->ReadPropertyString("option");
 			$homeX = $this->ReadPropertyInteger("homeX");
 			$homeY = $this->ReadPropertyInteger("homeY");
 			$homeRadius = $this->ReadPropertyInteger("homeRadius");
@@ -101,7 +103,14 @@
 			$context = stream_context_create($opts);
 
 			//$remoteImage = "https://www.dwd.de/DWD/wetter/radar/rad_" . $this->ConvertArea($area) ."_akt.jpg";
-			$remoteImage = "https://uwz.at/data/previews/AT_warning_today_rain_desktop.png";
+			if ($area == "Regen") {
+			  $remoteImage = "https://uwz.at/data/previews/AT_warning_today_rain_desktop.png";
+			}
+			
+			if ($area == "Gewitter") {
+			  $remoteImage = "https://uwz.at/data/previews/AT_warning_today_thunderstorm_desktop.png";
+			}
+			
 			
 
            
