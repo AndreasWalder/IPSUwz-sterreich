@@ -71,13 +71,15 @@
 			
      		$data = @file_get_contents($remoteImage, false, $context);
 
+            /*
 			$this->SendDebug($http_response_header[0], $remoteImage, 0);
 			
 			if((strpos($http_response_header[0], "200") === false)) {
 				echo $http_response_header[0]." ".$data;
 				return;
 			}
-
+            */
+			
 			file_put_contents($imagePath, $data);
 			
 			$mid = $this->RegisterMediaImage("RadarImage", "Radarbild", $this->imagePath);
